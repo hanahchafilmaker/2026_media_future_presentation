@@ -474,11 +474,11 @@ a{color:var(--gold)}
   <p class="subtitle">〈콜드사이트〉 × 〈이상한 나라의 이엘〉</p>
   <div class="body">
     <div class="plwrap">
-      <div class="media" style="--h:58vh" data-playlist="coldsite_trailer.mp4::① 〈콜드사이트〉::이정섭 감독 · 재난 · SF · 디스토피아 트레일러||eiel_webdrama_trailer.mp4::② 〈이상한 나라의 이엘〉::최은경 감독 · 성장 판타지 트레일러"></div>
+      <div class="media" style="--h:58vh" data-playlist="coldsite_trailer.mp4::① 〈콜드사이트〉::이정섭 감독 · 재난 · SF · 디스토피아 트레일러||eiel_webdrama_trailer.mp4::② 〈이상한 나라의 이엘〉::최은경 감독 · 성장 판타지 4K 예고"></div>
     </div>
   </div>
   <footer class="foot"><span>재난 SF + 성장 판타지</span><span class="slide-no"></span></footer>
-  <div class="notes-src">합본 파일은 <b>용량이 커서 미사용</b> — 기존 두 클립을 한 화면에서 순서대로 재생합니다. ① 콜드사이트 끝나면 <b>[다음 영상 ▶]</b> 또는 <b>]</b> 키로 ② 이엘. 시간이 밀리면 중간에 끊고 넘어감. 시간이 밀리면 중간에 끊고 넘어감. 용량이 크니 현장 네트워크 사전 확인. ※ 이엘 클립 <b>립싱크 싱크 보정</b> 후 교체.</div>
+  <div class="notes-src">합본 파일은 <b>용량이 커서 미사용</b> — 기존 두 클립을 한 화면에서 순서대로 재생합니다. ① 콜드사이트 끝나면 <b>[다음 영상 ▶]</b> 또는 <b>]</b> 키로 ② 이엘. 시간이 밀리면 중간에 끊고 넘어감. 시간이 밀리면 중간에 끊고 넘어감. 용량이 크니 현장 네트워크 사전 확인. ※ 이엘은 드라이브 4K 예고편으로 교체.</div>
 </section>
 <section class="slide" data-title="워크플로우">
   <header class="topline"><div class="brand"><img class="logo" data-logo alt="XCONDA">XCONDA 웹드라마 제작 워크플로우</div><span>PIPELINE</span></header>
@@ -728,7 +728,7 @@ a{color:var(--gold)}
         <div class="meta">
           <span><b>이진서</b> · 큐브베리 대표 / 전 KBS 드라마 PD</span>
           <span>㈜큐브베리 <b>070-8095-2302</b></span>
-          <span>CEO <b>CEO@cubeberry.ai</b></span>
+          <span>CEO <b><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="afeceae0efccdacdcacdcaddddd681cec6">[email&#160;protected]</a></b></span>
           <span class="linkwrap"><a class="btn-link" href="https://www.cubeberry.ai/" target="_blank" rel="noopener">cubeberry.ai ↗</a></span>
         </div>
       </div>
@@ -897,7 +897,7 @@ a{color:var(--gold)}
 <button id="apxbtn" type="button" title="부록 A~E · Q&amp;A 전용 (단축키 A)">부록 ▤</button>
 <div id="notes"></div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (() => {
 "use strict";
 /* ===== Drive 파일 연결 (ID 난독화 — 소스에 직접 노출 없음) ===== */
@@ -916,7 +916,7 @@ const ENC = {
   "thousand_years.mp4": "MU9XbEt4SUgyTFJmb2hSU1NSMkZrNDZPdTJSZFltT3lh",
   "toyfarm.mp4": "MW81cFZtSWN4ZW9DRTRDRXEwOTBlbWVtVl9sai1JUUY0",
   "turn_kr.html": "MTFWZzlJM0RGLUxRVkRqVlgwUUhBZVM5V1VYbmk4c04x",
-  "eiel_webdrama_trailer.mp4": "MTNqSF90bmRnbWJJN01PT09XMDJJMkFERU1GWFk2SWk4",
+  "eiel_webdrama_trailer.mp4": "MXd5b2l2WHBTZnFHNFgyUXV0VXNhYk5vU202TWMyMzVT",
   "xconda_logo.png": "MVlCQy13dHlod0pnaGItU3RFOXlvS3FZUXR1S3h5a0FU",
   "xconda_qr_openchat.png": "MVdScnZZQnpnV1Rici14dmp2Wm5faW9vTHVxU1NJbVpT",
   "foreign_hybrid.mp4": "MWllNjJoSlJzZFNsZnVKaHlybGlMWXJ3ZVJYOTZpZWwt",
@@ -1025,6 +1025,29 @@ function driveKey(src) {
   return null;
 }
 function driveId(src) { const k = driveKey(src); return k ? DRIVE[k] : null; }
+function ytId(src) {
+  const s = String(src || "").trim();
+  if (!s) return null;
+  if (/^yt:/i.test(s)) return s.slice(3).trim();
+  const m = s.match(/(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/))([A-Za-z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
+function ytEmbed(id, autoplay) {
+  return "https://www.youtube.com/embed/" + id + "?rel=0&modestbranding=1&playsinline=1&enablejsapi=1" + (autoplay ? "&autoplay=1" : "");
+}
+function mountYt(el, id, autoplay) {
+  el.classList.add("is-loading");
+  const ifr = document.createElement("iframe");
+  ifr.className = "video-frame";
+  ifr.src = ytEmbed(id, autoplay);
+  ifr.title = "YouTube video player";
+  ifr.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+  ifr.setAttribute("allowfullscreen", "");
+  ifr.referrerPolicy = "strict-origin-when-cross-origin";
+  ifr.onload = () => { el.classList.remove("is-loading"); el.classList.add("is-playing", "is-ready"); };
+  setTimeout(() => el.classList.remove("is-loading"), 12000);
+  el.appendChild(ifr);
+}
 /* 이미지 로드 체인: Drive(lh3) → Drive(uc) → 로컬 후보 → SVG */
 function chainLoad(imgEl, driveFileName, localCandidates) {
   const du = driveFileName && DATAURIS[driveFileName];
@@ -1177,6 +1200,8 @@ function plLoad(el) {
     chainLoad(im, clip.f, localVariants(clip.f));
     return;
   }
+  const yt = ytId(clip.f);
+  if (yt) { mountYt(el, yt, true); return; }
   /* ⓪-b 내장 데이터 URI 영상(소개 20초 내레이션 등) */
   const duV = DATAURIS[clip.f];
   if (duV && duV.indexOf("data:video") === 0) {
@@ -1360,5 +1385,7 @@ if (/^a\d*$/i.test(hh) && extras.length) { inApx = true; show((parseInt(hh.slice
 else { const h = parseInt(hh, 10); show(Number.isFinite(h) ? h - 1 : 0, false); }
 })();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a36dd4efdae23d69',t:'MTc4ODcwMTQ2Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a37365971bb5d1e1',t:'MTc4ODc1OTgxNg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a373a85e9b97d1da',t:'MTc4ODc2MjU1Mg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a36dd4efdae23d69',t:'MTc4ODcwMTQ2Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a37365971bb5d1e1',t:'MTc4ODc1OTgxNg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a373a85e9b97d1da',t:'MTc4ODc2MjU1Mg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a384d77f9b57d1cf',t:'MTc4ODk0Mjc0MA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
+ent.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
